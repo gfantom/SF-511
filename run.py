@@ -15,7 +15,8 @@ def parse_511_payload(*stop_codes: Tuple[int]) -> str:
         re_dict = re.json()["Routes"][0]["Routes"]
 
         for i in re_dict:
-            toJoin.append( """  {} - {}
+            toJoin.append( """
+  {} - {}
   arriving in: {}
 """.format( i["Code"], i["DirectionName"], ", ".join(i["Departures"]) ) )
 
@@ -29,9 +30,7 @@ def default():
 def sms_ahoy_reply():
     """Respond to incoming messages with a friendly SMS."""
     # getting the response body
-    print("AAAAAAA"+ request.data.decode("utf-8"))
-    print(request.data)
-    stop_codes = request.data.decode("utf-8").split(" ")
+    stop_codes = request.values["Body"].split(" ")
     stop_code_ints = [int(i) for i in stop_codes]
 
     resp_body = parse_511_payload( *stop_code_ints )
