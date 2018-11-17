@@ -21,7 +21,9 @@ def parse_511_payload(*stop_codes: Tuple[int]) -> str:
 
     return "\n".join(toJoin)
         
-
+@app.route("/", methods=['GET'])
+def default():
+    return "Hello World!"
 
 @app.route("/sms", methods=['POST'])
 def sms_ahoy_reply():
