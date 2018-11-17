@@ -1,1 +1,1 @@
-web: python run.py
+web: gunicorn run.py:app -b "0.0.0.0:$PORT" -w 3
