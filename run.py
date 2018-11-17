@@ -30,6 +30,7 @@ def sms_ahoy_reply():
     """Respond to incoming messages with a friendly SMS."""
     # getting the response body
     print("AAAAAAA"+ request.data.decode("utf-8"))
+    print(request.data)
     stop_codes = request.data.decode("utf-8").split(" ")
     stop_code_ints = [int(i) for i in stop_codes]
 
